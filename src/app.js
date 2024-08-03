@@ -57,7 +57,7 @@ function displayNotes() {
                 <div class="${cardClass}">
                     <p>${note.content}</p>
                     <small>${note.date}</small>
-                    <button onclick="deleteNote(${note.id})" class="delete-btn">Delete</button>
+                    <button onclick="deleteNote(${note.id})" class="delete-btn">Del</button>
                 </div>
             `;
     });
@@ -102,7 +102,7 @@ function showRandomNote() {
         <div class="${cardClass}">
             <p>${randomNote.content}</p>
             <small>${randomNote.date}</small>
-            <button onclick="deleteNote(${randomNote.id})" class="delete-btn">Delete</button>
+            <button onclick="deleteNote(${randomNote.id})" class="delete-btn">Del</button>
         </div>
         <button onclick="displayNotes()">Back to All Notes</button>
     `;
@@ -156,6 +156,66 @@ function updateStorageUsage() {
   }
 }
 
+// 显示搜索弹出窗口
+function showSearchPopup() {
+  document.getElementById("searchPopup").style.display = "block";
+  document.getElementById("searchInput").focus();
+}
+
+// 关闭搜索弹出窗口
+function closeSearchPopup() {
+  document.getElementById("searchPopup").style.display = "none";
+  document.getElementById("searchInput").value = "";
+}
+
+// 搜索笔记
+function searchNotes() {
+  var searchTerm = document.getElementById("searchInput").value.toLowerCase();
+  var notes = JSON.parse(localStorage.getItem("webNotes")) || [];
+  var filteredNotes = notes.filter((note) =>
+    note.content.toLowerCase().includes(searchTerm)
+  );
+  displaySearchResults(filteredNotes);
+}
+
+// 显示搜索结果
+function displaySearchResults(results) {
+  if (results.length === 0) {
+    resultHtml = "<p>No matching notes found.</p>";
+  } else {
+    var searchResults = document.getElementById("noteList");
+    var cardClass = "note-card";
+    var resultHtml = "<h3>Search Results:</h3>";
+    results.forEach(function (note) {
+      if (note.content.toLowerCase().includes("todo")) {
+        cardClass += " todo";
+        note.content = createTodoList(note.content);
+      } else if (note.content.toLowerCase().includes("quote")) {
+        cardClass += " quote";
+      }
+      resultHtml += `
+        <div class="${cardClass}">
+            <p>${note.content}</p>
+            <small>${note.date}</small>
+            <button onclick="deleteNote(${note.id})" class="delete-btn">Del</button>
+        </div>
+      `;
+    });
+    resultHtml += `<button onclick="displayNotes()">Back to All Notes</button>`;
+  }
+  searchResults.innerHTML = resultHtml;
+  closeSearchPopup();
+}
+
+// 添加事件监听器，以便在按下Enter键时也能触发搜索
+document
+  .getElementById("searchInput")
+  .addEventListener("keyup", function (event) {
+    if (event.key === "Enter") {
+      searchNotes();
+    }
+  });
+
 // Close popup when clicking outside of it
 window.onclick = function (event) {
   if (event.target == document.getElementById("noteForm")) {
@@ -163,5 +223,8 @@ window.onclick = function (event) {
   }
   if (event.target == document.getElementById("settingsPage")) {
     closeSettings();
+  }
+  if (event.target == document.getElementById("searchPopup")) {
+    closeSearchPopup();
   }
 };

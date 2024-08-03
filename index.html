@@ -14,8 +14,8 @@
         <h1>Notes</h1>
         <div class="header-icons">
           <button class="icon-button" onclick="showRandomNote()">🎲</button>
-          <button class="icon-button">🔍</button>
-          <button onclick="showSettings()" class="icon-button">⚙️</button>
+          <button class="icon-button" onclick="showSearchPopup()">🔍</button>
+          <button class="icon-button" onclick="showSettings()">⚙️</button>
         </div>
       </header>
 
@@ -46,7 +46,19 @@
           <span id="storagePercentage" class="progress-percentage"></span>
         </div>
         <p id="storageUsage"></p>
-        <button onclick="closeSettings()" class="cancel">关闭</button>
+        <button onclick="closeSettings()" class="cancel">Cancel</button>
+      </div>
+    </div>
+
+    <div id="searchPopup" class="popup">
+      <div class="popup-content">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="What do you want to search?"
+        />
+        <button onclick="searchNotes()" class="search-btn">Search</button>
+        <button onclick="closeSearchPopup()" class="cancel">Cancel</button>
       </div>
     </div>
 
