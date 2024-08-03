@@ -5,29 +5,24 @@ const VERSION = "v0.0.2";
 const CACHE_NAME = "supanote-tracker-" + VERSION;
 
 // static resources to cache
-let APP_STATIC_RESOURCES;
-// 当前网址是localhost时或“http://127.0.0.1/”
-if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
-  APP_STATIC_RESOURCES = [
-    "/",
-    "/index.html",
-    "/style/main.css",
-    "/src/app.js",
-    "/manifest.json",
-    "/public/imgs/favicon.ico",
-    "/public/imgs/icon-400.png",
-  ];
-} else {
-  APP_STATIC_RESOURCES = [
-    "/supanote/",
-    "/supanote/index.html",
-    "/supanote/style/main.css",
-    "/supanote/src/app.js",
-    "/supanote/manifest.json",
-    "/supanote/public/imgs/favicon.ico",
-    "/supanote/public/imgs/icon-400.png",
+function getAppStaticResources() {
+  const basePath =
+    location.hostname === "localhost" || location.hostname === "127.0.0.1"
+      ? "/"
+      : "/supanote/";
+  return [
+    `${basePath}`,
+    `${basePath}index.html`,
+    `${basePath}style/main.css`,
+    `${basePath}src/app.js`,
+    `${basePath}manifest.json`,
+    `${basePath}public/imgs/favicon.ico`,
+    `${basePath}public/imgs/icon-400.png`,
   ];
 }
+
+// 使用 getAppStaticResources 函数获取静态资源数组
+let APP_STATIC_RESOURCES = getAppStaticResources();
 
 // cache all static resources when install the service worker
 self.addEventListener("install", (event) => {
