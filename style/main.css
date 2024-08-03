@@ -54,12 +54,15 @@ h1 {
   color: white;
 }
 .note-card.todo {
-  background-color: #ff5722;
+  background-color: #be2c27;
   color: white;
 }
 .note-card.quote-of-day {
   background-color: #00bcd4;
   color: white;
+}
+.note-card .note-date {
+  margin-top: 10px;
 }
 .todo-list {
   list-style-type: none;
@@ -135,8 +138,8 @@ textarea {
 
 .delete-btn {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  bottom: 12.5px;
+  right: 15px;
   background-color: #f44336;
   color: white;
   border: none;

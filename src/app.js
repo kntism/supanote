@@ -56,7 +56,7 @@ function displayNotes() {
       noteHtml += `
                 <div class="${cardClass}">
                     <p>${note.content}</p>
-                    <small>${note.date}</small>
+                    <div class="note-date">${note.date}</div>
                     <button onclick="deleteNote(${note.id})" class="delete-btn">Del</button>
                 </div>
             `;
@@ -101,7 +101,7 @@ function showRandomNote() {
   noteList.innerHTML = `
         <div class="${cardClass}">
             <p>${randomNote.content}</p>
-            <small>${randomNote.date}</small>
+            <div class="note-date">${randomNote.date}</div>
             <button onclick="deleteNote(${randomNote.id})" class="delete-btn">Del</button>
         </div>
         <button onclick="displayNotes()">Back to All Notes</button>
@@ -196,7 +196,7 @@ function displaySearchResults(results) {
       resultHtml += `
         <div class="${cardClass}">
             <p>${note.content}</p>
-            <small>${note.date}</small>
+            <div class="note-date">${note.date}</div>
             <button onclick="deleteNote(${note.id})" class="delete-btn">Del</button>
         </div>
       `;
