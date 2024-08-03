@@ -25,6 +25,7 @@ function saveNote() {
 
   var notes = JSON.parse(localStorage.getItem("webNotes")) || [];
   notes.unshift({
+    id: Date.now(),
     content: content,
     date: new Date().toLocaleString(),
     type: "general",
@@ -56,6 +57,7 @@ function displayNotes() {
                 <div class="${cardClass}">
                     <p>${note.content}</p>
                     <small>${note.date}</small>
+                    <button onclick="deleteNote(${note.id})" class="delete-btn">Delete</button>
                 </div>
             `;
     });
@@ -100,9 +102,20 @@ function showRandomNote() {
         <div class="${cardClass}">
             <p>${randomNote.content}</p>
             <small>${randomNote.date}</small>
+            <button onclick="deleteNote(${randomNote.id})" class="delete-btn">Delete</button>
         </div>
         <button onclick="displayNotes()">Back to All Notes</button>
     `;
+}
+
+// Delete a note
+function deleteNote(id) {
+  if (confirm("Are you sure you want to delete this note?")) {
+    var notes = JSON.parse(localStorage.getItem("webNotes")) || [];
+    notes = notes.filter((note) => note.id !== id);
+    localStorage.setItem("webNotes", JSON.stringify(notes));
+    displayNotes();
+  }
 }
 
 // Close popup when clicking outside of it
