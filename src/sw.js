@@ -1,5 +1,5 @@
 // version of service worker
-const VERSION = "v0.1.0";
+const VERSION = "v0.1.1";
 
 // cache name
 const CACHE_NAME = "supanote-tracker-" + VERSION;
