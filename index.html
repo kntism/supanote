@@ -15,6 +15,7 @@
         <div class="header-icons">
           <button class="icon-button" onclick="showRandomNote()">🎲</button>
           <button class="icon-button">🔍</button>
+          <button onclick="showSettings()" class="icon-button">⚙️</button>
         </div>
       </header>
 
@@ -34,6 +35,18 @@
         ></textarea>
         <button class="save" onclick="saveNote()">Save</button>
         <button class="cancel" onclick="closeNoteForm()">Cancel</button>
+      </div>
+    </div>
+
+    <div id="settingsPage" class="popup">
+      <div class="popup-content">
+        <h3>Storage Usage</h3>
+        <div class="progress-container">
+          <div id="storageBar" class="progress-bar"></div>
+          <span id="storagePercentage" class="progress-percentage"></span>
+        </div>
+        <p id="storageUsage"></p>
+        <button onclick="closeSettings()" class="cancel">关闭</button>
       </div>
     </div>
 

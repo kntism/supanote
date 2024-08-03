@@ -118,9 +118,50 @@ function deleteNote(id) {
   }
 }
 
+// Show settings page
+function showSettings() {
+  document.getElementById("settingsPage").style.display = "block";
+  updateStorageUsage();
+}
+
+// Close settings page
+function closeSettings() {
+  document.getElementById("settingsPage").style.display = "none";
+}
+
+// Update storage usage information
+function updateStorageUsage() {
+  var notes = JSON.parse(localStorage.getItem("webNotes")) || [];
+  var totalSize = JSON.stringify(notes).length;
+  var maxSize = 5 * 1024 * 1024;
+  var percentage = Math.min(100, (totalSize / maxSize) * 100);
+
+  var usageElement = document.getElementById("storageUsage");
+  var progressBar = document.getElementById("storageBar");
+  var percentageElement = document.getElementById("storagePercentage");
+
+  progressBar.style.width = `${percentage}%`;
+  percentageElement.textContent = `${percentage.toFixed(1)}%`;
+  usageElement.textContent = `${(totalSize / (1024 * 1024)).toFixed(
+    2
+  )} MB of 5 MB`;
+
+  // 根据使用情况改变颜色
+  if (percentage < 70) {
+    progressBar.style.backgroundColor = "#4CAF50"; // 绿色
+  } else if (percentage < 90) {
+    progressBar.style.backgroundColor = "#FFA500"; // 橙色
+  } else {
+    progressBar.style.backgroundColor = "#FF0000"; // 红色
+  }
+}
+
 // Close popup when clicking outside of it
 window.onclick = function (event) {
   if (event.target == document.getElementById("noteForm")) {
     closeNoteForm();
+  }
+  if (event.target == document.getElementById("settingsPage")) {
+    closeSettings();
   }
 };
