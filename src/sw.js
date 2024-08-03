@@ -5,15 +5,29 @@ const VERSION = "v0.0.2";
 const CACHE_NAME = "supanote-tracker-" + VERSION;
 
 // static resources to cache
-const APP_STATIC_RESOURCES = [
-  "../",
-  "../index.html",
-  "../style/main.css",
-  "../src/app.js",
-  "../manifest.json",
-  "../public/imgs/favicon.ico",
-  "../public/imgs/icon-400.png",
-];
+let APP_STATIC_RESOURCES;
+// 当前网址是localhost时或“http://127.0.0.1/”
+if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+  APP_STATIC_RESOURCES = [
+    "/",
+    "/index.html",
+    "/style/main.css",
+    "/src/app.js",
+    "/manifest.json",
+    "/public/imgs/favicon.ico",
+    "/public/imgs/icon-400.png",
+  ];
+} else {
+  APP_STATIC_RESOURCES = [
+    "/supanote/",
+    "/supanote/index.html",
+    "/supanote/style/main.css",
+    "/supanote/src/app.js",
+    "/supanote/manifest.json",
+    "/supanote/public/imgs/favicon.ico",
+    "/supanote/public/imgs/icon-400.png",
+  ];
+}
 
 // cache all static resources when install the service worker
 self.addEventListener("install", (event) => {
