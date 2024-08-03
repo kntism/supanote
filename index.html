@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes App</title>
+    <link type="text/css" rel="stylesheet" href="style/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Notes</h1>
+        <div class="header-icons">
+          <button class="icon-button" onclick="showRandomNote()">🎲</button>
+          <button class="icon-button">🔍</button>
+        </div>
+      </header>
+
+      <div id="noteList">
+        <!-- Notes will be dynamically added here -->
+      </div>
+    </div>
+
+    <button class="add-note" onclick="showNoteForm()">+</button>
+
+    <div id="noteForm" class="popup">
+      <div class="popup-content">
+        <h2>Add a New Note</h2>
+        <textarea
+          id="noteContent"
+          placeholder="Enter your note here..."
+        ></textarea>
+        <button class="save" onclick="saveNote()">Save</button>
+        <button class="cancel" onclick="closeNoteForm()">Cancel</button>
+      </div>
+    </div>
+
+    <script src="src/app.js" defer></script>
+  </body>
+</html>
