@@ -38,5 +38,21 @@
     </div>
 
     <script src="src/app.js" defer></script>
+    <script>
+      // Is service worker supported?
+      if ("serviceWorker" in navigator) {
+        // Register the service worker
+        navigator.serviceWorker.register("src/sw.js").then(
+          (registration) => {
+            console.log("Service worker registration succeeded:", registration);
+          },
+          (error) => {
+            console.error("Service worker registration failed:", error);
+          }
+        );
+      } else {
+        console.error("Service workers are not supported.");
+      }
+    </script>
   </body>
 </html>
