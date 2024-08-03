@@ -1,0 +1,16 @@
+{
+  "name": "SupaNote: a simple note taking app",
+  "short_name": "SupaNote",
+  "description": "A simple note taking app",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#eeffee",
+  "theme_color": "#eeffee",
+  "icons": [
+    {
+      "src": "public/imgs/icon-400.png",
+      "sizes": "400x400",
+      "type": "image/png"
+    }
+  ]
+}
