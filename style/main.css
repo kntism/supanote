@@ -65,7 +65,7 @@ h1 {
   margin-bottom: 5px;
 }
 .todo-list li::before {
-  content: "□";
+  content: "-";
   margin-right: 5px;
 }
 .todo-list li.done::before {
