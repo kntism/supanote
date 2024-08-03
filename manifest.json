@@ -2,7 +2,7 @@
   "name": "SupaNote: a simple note taking app",
   "short_name": "SupaNote",
   "description": "A simple note taking app",
-  "start_url": "/",
+  "start_url": "/supanote",
   "display": "standalone",
   "background_color": "#eeffee",
   "theme_color": "#eeffee",
