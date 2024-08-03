@@ -11,6 +11,7 @@ const APP_STATIC_RESOURCES = [
   "/style/main.css",
   "/src/app.js",
   "/manifest.json",
+  "/public/imgs/favicon.ico",
   "/public/imgs/icon-400.png",
 ];
 
